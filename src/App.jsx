@@ -9,6 +9,9 @@ import Mall from "./pages/mall/Mall";
 import School from "./pages/school/School";
 import TrafficHotspot from "./pages/traffichotspot/TrafficHotspot";
 import Diversion from "./pages/diversion/Diversion";
+import Complaint from "./pages/complaint/Complaint";
+import Event from "./pages/event/Event";
+import Construction from "./pages/construction/Construction";
 
 function App() {
   const router = createBrowserRouter([
@@ -47,19 +50,24 @@ function App() {
         {
           path:"/diversion",
           element: <Diversion/>
-        }
-        /*{
-          path: "/event",
-          element: <Register />,
-        },
-        {
-          path: "/constrution",
-          element: <Register />,
         },
         {
           path: "/complaint",
-          element: <Register />,
+          element: <Complaint />,
         },
+        {
+          path: "/event",
+          element: <Event/>,
+        },
+        {
+          path: "/construction",
+          element: <Construction/>,
+        }
+        /*
+        {
+          path: "/constrution",
+          element: <Register />,
+        },,
         {
           path: "/parkingbuilding",
           element: <Register />,

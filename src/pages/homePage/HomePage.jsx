@@ -36,6 +36,15 @@ const HomePage = () => {
     if(value === "Diversion"){
       navigate("/diversion");
     }
+    if(value === "Complaint"){
+      navigate("/complaint");
+    }
+    if(value === "Event"){
+      navigate("/event");
+    }
+    if(value === "Construction"){
+      navigate("/construction");
+    }
   };
 
   return (
