@@ -1,3 +1,62 @@
 .home-page{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
+
+/* Overall page styling */
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5; /* Light background */
+    font-family: 'Arial', sans-serif; /* Clean font */
+  }
+  
+  /* Styling for the title */
+  .home-page h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the select dropdown */
+  .home-page select {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 250px;
+    box-sizing: border-box;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Hover effect for the select dropdown */
+  .home-page select:hover {
+    border-color: #007bff;
+  }
+  
+  /* Focus effect for the select dropdown */
+  .home-page select:focus {
+    outline: none;
+    border-color: #0056b3;
+  }
+  
+  /* Add some margin at the bottom of the select */
+  .home-page select {
+    margin-top: 20px;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .home-page h2 {
+      font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+  
+    .home-page select {
+      width: 80%; /* Adjust dropdown width on small screens */
+    }
+  }
+  

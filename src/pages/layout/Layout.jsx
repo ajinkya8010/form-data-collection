@@ -13,9 +13,6 @@ function Layout() {
         <HomePage/>
         <Outlet />
       </div>
-      <div className="footer">
-        <Footer/>
-      </div>
     </div>
   );
 }

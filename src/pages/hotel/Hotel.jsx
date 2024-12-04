@@ -33,6 +33,17 @@ const Hotel = () => {
         <div className="form-container">
             <h1>Create Hotel</h1>
             <form onSubmit={handleSubmit} className="form">
+            <div className="form-group">
+                    <label>Latitude:</label>
+                    <input
+                        type="text"
+                        name="latitude"
+                        value={formData.latitude}
+                        onChange={handleChange}
+                        required
+                        placeholder="Enter latitude"
+                    />
+                </div>
                 <div className="form-group">
                     <label>Longitude:</label>
                     <input
@@ -42,17 +53,6 @@ const Hotel = () => {
                         onChange={handleChange}
                         required
                         placeholder="Enter longitude"
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Latitude:</label>
-                    <input
-                        type="text"
-                        name="latitude"
-                        value={formData.latitude}
-                        onChange={handleChange}
-                        required
-                        placeholder="Enter latitude"
                     />
                 </div>
                 <div className="form-group">

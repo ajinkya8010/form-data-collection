@@ -1,6 +1,5 @@
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/homePage/HomePage";
 import BanquetHall from "./pages/banquetHall/BanquetHall";
 import Layout from "./pages/layout/Layout";
 import Garden from "./pages/garden/Garden";
@@ -19,10 +18,6 @@ function App() {
       children: [
         {
           path: "/",
-          element: <HomePage/>,
-        },
-        {
-          path: "/banquethall",
           element: <BanquetHall/>
         },
         {

@@ -33,17 +33,6 @@ const Mall = () => {
             <h1>Create Mall</h1>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
-                    <label>Longitude:</label>
-                    <input
-                        type="text"
-                        name="longitude"
-                        value={formData.longitude}
-                        onChange={handleChange}
-                        required
-                        placeholder="Enter longitude"
-                    />
-                </div>
-                <div className="form-group">
                     <label>Latitude:</label>
                     <input
                         type="text"
@@ -52,6 +41,17 @@ const Mall = () => {
                         onChange={handleChange}
                         required
                         placeholder="Enter latitude"
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Longitude:</label>
+                    <input
+                        type="text"
+                        name="longitude"
+                        value={formData.longitude}
+                        onChange={handleChange}
+                        required
+                        placeholder="Enter longitude"
                     />
                 </div>
                 <div className="form-group">
