@@ -1,0 +1,92 @@
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Form heading */
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2d3436;
+}
+
+/* Form styling */
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual form group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #636e72;
+}
+
+/* Input fields */
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Placeholder text styling */
+.form-group input::placeholder {
+    color: #b2bec3;
+}
+
+/* Dropdown styling */
+.form-group select {
+    appearance: none;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 10px center;
+    background-size: 16px;
+}
+
+/* Submit button */
+.submit-btn {
+    padding: 10px;
+    background-color: #0984e3;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Submit button hover effect */
+.submit-btn:hover {
+    background-color: #74b9ff;
+}
+
+/* Responsive design */
+@media (max-width: 500px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-group input, .form-group select {
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        font-size: 15px;
+    }
+}

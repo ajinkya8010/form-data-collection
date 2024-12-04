@@ -1,14 +1,42 @@
-import React, { useState } from "react";
-import DynamicForm from "../components/DynamicForm";
 
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import './HomePage.css';
 
 const HomePage = () => {
   const [selectedForm, setSelectedForm] = useState("");
+  const navigate = useNavigate();
 
   const handleFormSelection = (e) => {
-    setSelectedForm(e.target.value);
-  };
+    const value = e.target.value;
+    setSelectedForm(value);
 
+    if (value === "BanquetHall") {
+      navigate("/banquethall");
+    }
+    if(value === "Garden"){
+      navigate("/garden");
+    }
+    if(value === "Hospital"){
+      navigate("/hospital");
+    }
+    if(value === "Hotel"){
+      navigate("/hotel");
+    }
+    if(value === "Mall"){
+      navigate("/mall");
+    }
+    if(value === "School"){
+      navigate("/school");
+    }
+    if(value === "TrafficHotspot"){
+      navigate("/traffichotspot");
+    }
+    if(value === "Diversion"){
+      navigate("/diversion");
+    }
+  };
 
   return (
     <div className="home-page">
@@ -28,16 +56,9 @@ const HomePage = () => {
         <option value="School">School</option>
         <option value="TrafficHotspot">Traffic Hotspot</option>
       </select>
-
-
-      {selectedForm && (
-        <div className="form-container">
-          <DynamicForm formType={selectedForm}/>
-        </div>
-      )}
-
     </div>
   );
 };
 
 export default HomePage;
+

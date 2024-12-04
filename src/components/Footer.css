@@ -1,0 +1,25 @@
+.footer {
+    background-color: #f8f9fa; /* Light gray background */
+    color: #6c757d; /* Subtle gray text */
+    text-align: center; /* Center align the content */
+    padding: 1rem; /* Space around the content */
+    font-family: 'Arial', sans-serif; /* Font style */
+    border-top: 1px solid #e0e0e0; /* Top border for separation */
+    position: fixed; /* Sticks the footer to the bottom */
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .footer p {
+    margin: 0; /* Remove default margin */
+    font-size: 0.9rem; /* Adjust font size */
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      font-size: 0.8rem; /* Smaller font size for smaller screens */
+      padding: 0.8rem;
+    }
+  }
+  
