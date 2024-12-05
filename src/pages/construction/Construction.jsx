@@ -50,7 +50,7 @@ const Construction = () => {
       }
   
       const response = await axios.post("https://road-traffic-backend.onrender.com/api/construction/", payload);
-  
+      alert("Construction project registered successfully!");
       setMessage("Construction project registered successfully!");
     } catch (err) {
       setError("Error: " + (err.response?.data?.message || err.message));

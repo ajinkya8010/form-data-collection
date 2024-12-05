@@ -61,6 +61,7 @@ const Complaint = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      alert("Complaint submitted successfully!");
       setMessage('Complaint submitted successfully!');
     } catch (err) {
       setError('Error: ' + err.message);

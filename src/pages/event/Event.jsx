@@ -79,6 +79,7 @@ const Event = () => {
       }
   
       await axios.post("https://road-traffic-backend.onrender.com/api/event/", payload);
+      alert("Event registered successfully!");
       setMessage("Event registered successfully!");
     } catch (err) {
       setError("Error: " + err.message);
