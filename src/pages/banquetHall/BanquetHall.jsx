@@ -37,7 +37,7 @@ const BanquetHall = () => {
 
     return (
         <div className="form-container">
-            <h1>Create Banquet Hall</h1>
+            <h1>Register Banquet Hall</h1>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
                     <label>Hall Name:</label>

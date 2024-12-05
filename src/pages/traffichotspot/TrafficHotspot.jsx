@@ -29,7 +29,7 @@ const TrafficHotspot = () => {
 
     return (
         <div className="form-container">
-            <h1>Create Traffic Hotspot</h1>
+            <h1>Register Traffic Hotspot</h1>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
                     <label>Latitude:</label>

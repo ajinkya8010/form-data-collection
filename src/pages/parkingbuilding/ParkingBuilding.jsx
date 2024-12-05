@@ -30,7 +30,7 @@ const ParkingBuilding = () => {
 
     return (
         <div className="form-container">
-            <h1>Create Parking Building</h1>
+            <h1>Register Parking Building</h1>
             <form onSubmit={handleSubmit} className="form">
             <div className="form-group">
                     <label>Latitude:</label>

@@ -30,7 +30,7 @@ const Mall = () => {
 
     return (
         <div className="form-container">
-            <h1>Create Mall</h1>
+            <h1>Register Mall</h1>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
                     <label>Latitude:</label>

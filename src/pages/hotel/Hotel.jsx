@@ -31,7 +31,7 @@ const Hotel = () => {
 
     return (
         <div className="form-container">
-            <h1>Create Hotel</h1>
+            <h1>Register Hotel</h1>
             <form onSubmit={handleSubmit} className="form">
             <div className="form-group">
                     <label>Latitude:</label>
