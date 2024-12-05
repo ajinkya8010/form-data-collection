@@ -45,6 +45,9 @@ const HomePage = () => {
     if(value === "Construction"){
       navigate("/construction");
     }
+    if(value === "ParkingBuilding"){
+      navigate("/parkingbuilding");
+    }
   };
 
   return (

@@ -12,6 +12,7 @@ import Diversion from "./pages/diversion/Diversion";
 import Complaint from "./pages/complaint/Complaint";
 import Event from "./pages/event/Event";
 import Construction from "./pages/construction/Construction";
+import ParkingBuilding from "./pages/parkingbuilding/ParkingBuilding";
 
 function App() {
   const router = createBrowserRouter([
@@ -62,17 +63,11 @@ function App() {
         {
           path: "/construction",
           element: <Construction/>,
-        }
-        /*
-        {
-          path: "/constrution",
-          element: <Register />,
-        },,
+        },
         {
           path: "/parkingbuilding",
-          element: <Register />,
-        },*/
-
+          element: <ParkingBuilding/ >,
+        },
       ]
     },
    

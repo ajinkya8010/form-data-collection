@@ -49,7 +49,7 @@ const Construction = () => {
         throw new Error("Polyline must have at least two valid points.");
       }
   
-      const response = await axios.post("http://localhost:3001/api/construction/", payload);
+      const response = await axios.post("https://road-traffic-backend.onrender.com/api/construction/", payload);
   
       setMessage("Construction project registered successfully!");
     } catch (err) {
