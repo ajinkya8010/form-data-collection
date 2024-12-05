@@ -56,7 +56,7 @@ const Complaint = () => {
       formData.append('lat', lat);
       formData.append('lng', lng);
 
-      const res = await axios.post('http://localhost:3001/api/complaint/', formData, {
+      const res = await axios.post('https://road-traffic-backend.onrender.com/api/complaint/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
