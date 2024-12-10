@@ -1,169 +1,174 @@
 import React, { useState } from "react";
-import "./Construction.css";
+import { MapContainer, TileLayer, FeatureGroup, useMapEvents } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { EditControl } from "react-leaflet-draw";
+import "leaflet-draw/dist/leaflet.draw.css";
 import axios from "axios";
+import "./Construction.css";
 
 const Construction = () => {
-  const [projectName, setProjectName] = useState("");
-  const [vendorName, setVendorName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [expectedEndDate, setExpectedEndDate] = useState("");
-  const [status, setStatus] = useState("active");
-  const [polyline, setPolyline] = useState([{ lat: "", lng: "" }]);
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    projectName: "",
+    vendorName: "",
+    startDate: "",
+    expectedEndDate: "",
+    type: "",
+    status:"",
+    constructionPoints: [], 
+  });
 
-  const handlePolylineChange = (index, field, value) => {
-    const updatedPolyline = [...polyline];
-    updatedPolyline[index][field] = value;
-    setPolyline(updatedPolyline);
-  };
-
-  const addPolylinePoint = () => {
-    setPolyline([...polyline, { lat: "", lng: "" }]);
-  };
-
-  const removePolylinePoint = (index) => {
-    const updatedPolyline = polyline.filter((_, i) => i !== index);
-    setPolyline(updatedPolyline);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError("");
-  
     try {
-        const payload = {
-            projectName,
-            vendorName,
-            coordinates: polyline.map((point) => [Number(point.lng), Number(point.lat)]), // Nested arrays for coordinates
-            startDate,
-            expectedEndDate,
-            status,
-          };
-          
-  
-      // Validate coordinates
-      if (payload.coordinates.length < 2) {
-        throw new Error("Polyline must have at least two valid points.");
-      }
-  
-      const response = await axios.post("https://road-traffic-backend.onrender.com/api/construction/", payload);
-      alert("Construction project registered successfully!");
-      setMessage("Construction project registered successfully!");
-    } catch (err) {
-      setError("Error: " + (err.response?.data?.message || err.message));
-    } finally {
-      setIsLoading(false);
+      const response = await axios.post("https://road-traffic-backend.onrender.com/api/construction/", formData);
+      alert(response.data.message || "Construction project created successfully!");
+    } catch (error) {
+      alert("Error creating construction project: " + (error.response?.data?.message || error.message));
     }
   };
-  
+
+  const handleDrawCreated = (e) => {
+    const layer = e.layer;
+
+    if (layer) {
+      const latLngs = layer.getLatLngs().map((latlng) => ({
+        lat: latlng.lat,
+        lng: latlng.lng,
+      }));
+
+      setFormData((prevData) => ({
+        ...prevData,
+        constructionPoints: latLngs,
+      }));
+    }
+  };
 
   return (
     <div className="construction-container">
-      <h2 className="construction-title">Register a Construction Project</h2>
-      <form className="construction-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="projectName">Project Name</label>
-          <input
-            type="text"
-            id="projectName"
-            className="construction-input"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-            required
+      {/* Map Section */}
+      <div className="construction-map-container">
+        <MapContainer center={[18.5204, 73.8567]} zoom={13} className="construction-map">
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-        </div>
+          <FeatureGroup>
+            <EditControl
+              position="topright"
+              onCreated={handleDrawCreated}
+              draw={{
+                rectangle: false,
+                circle: false,
+                marker: false,
+                polygon: false,
+                polyline: true,
+              }}
+            />
+          </FeatureGroup>
+        </MapContainer>
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="vendorName">Vendor Name</label>
-          <input
-            type="text"
-            id="vendorName"
-            className="construction-input"
-            value={vendorName}
-            onChange={(e) => setVendorName(e.target.value)}
-            required
-          />
-        </div>
-
-
-        <div className="form-group">
-          <label htmlFor="startDate">Start Date</label>
-          <input
-            type="date"
-            id="startDate"
-            className="construction-input"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="expectedEndDate">Expected End Date</label>
-          <input
-            type="date"
-            id="expectedEndDate"
-            className="construction-input"
-            value={expectedEndDate}
-            onChange={(e) => setExpectedEndDate(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Status</label>
-          <select
-            id="status"
-            className="construction-select"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            required
-          >
-            <option value="active">Active</option>
-            <option value="completed">Completed</option>
-            <option value="paused">Paused</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Polyline Data (Enter multiple points)</label>
-          {polyline.map((point, index) => (
-            <div key={index} className="polyline-point">
-              <input
-                type="text"
-                className="construction-input"
-                placeholder={`Point ${index + 1} Latitude`}
-                value={point.lat}
-                onChange={(e) => handlePolylineChange(index, "lat", e.target.value)}
-                required
-              />
-              <input
-                type="text"
-                className="construction-input"
-                placeholder={`Point ${index + 1} Longitude`}
-                value={point.lng}
-                onChange={(e) => handlePolylineChange(index, "lng", e.target.value)}
-                required
-              />
-              {index > 0 && (
-                <button type="button" onClick={() => removePolylinePoint(index)}>
-                  Remove
-                </button>
-              )}
-            </div>
-          ))}
-          <button type="button" onClick={addPolylinePoint}>Add Point</button>
-        </div>
-
-        <button type="submit" className="construction-submit" disabled={isLoading}>
-          Submit Construction Project
-        </button>
-        {error && <span className="error-message">{error}</span>}
-        {message && <p className="success-message">{message}</p>}
-      </form>
+      {/* Form Section */}
+      <div className="construction-form-container">
+        <h1>Create Construction Project</h1>
+        <form onSubmit={handleSubmit} className="construction-form">
+          <div className="form-group">
+            <label>Project Name:</label>
+            <input
+              type="text"
+              name="projectName"
+              value={formData.projectName}
+              onChange={handleChange}
+              required
+              placeholder="Enter project name"
+            />
+          </div>
+          <div className="form-group">
+            <label>Vendor Name:</label>
+            <input
+              type="text"
+              name="vendorName"
+              value={formData.vendorName}
+              onChange={handleChange}
+              required
+              placeholder="Enter vendor name"
+            />
+          </div>
+          <div className="form-group">
+            <label>Construction Type:</label>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select construction type
+              </option>
+              <option value="Metro-construction">Metro-construction</option>
+              <option value="Road-construction">Road-construction</option>
+              <option value="Flyover-construction">Flyover-construction</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Start Date:</label>
+            <input
+              type="date"
+              name="startDate"
+              value={formData.startDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Expected End Date:</label>
+            <input
+              type="date"
+              name="expectedEndDate"
+              value={formData.expectedEndDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Status:</label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select construction status
+              </option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+              <option value="paused">Paused</option>
+            </select>
+          </div>
+    
+          <div className="form-group">
+            <label>Construction Points:</label>
+            <textarea
+              name="constructionPoints"
+              value={JSON.stringify(formData.constructionPoints, null, 2)}
+              readOnly
+              rows="5"
+            ></textarea>
+          </div>
+          <button type="submit" className="submit-btn">
+            Create Construction Project
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
