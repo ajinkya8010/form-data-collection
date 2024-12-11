@@ -94,9 +94,18 @@
 @media (max-width: 768px) {
   .construction-container {
     flex-direction: column;
+    align-items: stretch; /* Ensure children take full width */
+  }
+   
+  .construction-map-container, 
+  .construction-form-container {
+    flex: none; /* Override previous flex settings */
+    width: 100%; /* Ensure full width */
+    max-width: none; /* Remove max-width constraint */
   }
 
   .construction-map-container {
+    order: -1; /* Bring map to the top */
     height: 300px;
   }
 }
