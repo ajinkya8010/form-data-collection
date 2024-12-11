@@ -13,7 +13,7 @@ const HomePage = () => {
     setSelectedForm(value);
 
     if (value === "BanquetHall") {
-      navigate("/");
+      navigate("/banquethall");
     }
     if(value === "Garden"){
       navigate("/garden");
