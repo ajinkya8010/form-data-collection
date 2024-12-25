@@ -13,7 +13,7 @@ const Event = () => {
     endTime: "",
     crowd: "",
     vehicleCount: "",
-    eventPoints: [], // Array to store lat-long points
+    eventPoints: [], 
   });
 
   const handleChange = (e) => {

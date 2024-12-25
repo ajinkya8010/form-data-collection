@@ -71,7 +71,7 @@ const School = () => {
                 <div className="form-group">
                     <label>Start Time:</label>
                     <input
-                        type="datetime-local"
+                        type="time"
                         name="startTime"
                         value={formData.startTime}
                         onChange={handleChange}
@@ -81,7 +81,7 @@ const School = () => {
                 <div className="form-group">
                     <label>End Time:</label>
                     <input
-                        type="datetime-local"
+                        type="time"
                         name="endTime"
                         value={formData.endTime}
                         onChange={handleChange}
